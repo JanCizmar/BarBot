@@ -1,4 +1,3 @@
 export default class Pub {
-  constructor(public name: string) {
-  }
+  constructor(public name: string) {}
 }
