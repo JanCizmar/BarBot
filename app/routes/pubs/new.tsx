@@ -5,8 +5,9 @@ import { Layout } from '../../component/Layout'
 export const action = async ({ request }: any) => {
   const formData = await request.formData()
   const name = formData.get('name')
-  await createPub({ name })
-  return redirect('/pubs')
+  const email = formData.get('email')
+  const pub = await createPub(name, email)
+  return redirect(`/pubs/${pub.slug}`)
 }
 
 export default function NewPost() {
@@ -23,6 +24,19 @@ export default function NewPost() {
                  focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               name="name"
+            />
+          </label>
+        </p>
+        <p>
+          <label>
+            Your email:{' '}
+            <input
+              className="rounded-lg border-transparent flex-1 appearance-none
+               border border-gray-300 w-full py-2 px-4 bg-white text-gray-700
+                placeholder-gray-400 shadow-sm text-base focus:outline-none
+                 focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              type="email"
+              name="email"
             />
           </label>
         </p>

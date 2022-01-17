@@ -1,9 +1,13 @@
 import * as mongoDB from 'mongodb'
 import Pub from '../model/pub'
+import Customer from '../model/customer'
 
 export const collections = {
   get pubs(): Promise<mongoDB.Collection<Pub>> {
     return getDb().then((db) => db.collection('pubs'))
+  },
+  get customers(): Promise<mongoDB.Collection<Customer>> {
+    return getDb().then((db) => db.collection('customers'))
   },
 }
 
